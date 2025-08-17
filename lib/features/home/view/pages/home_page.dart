@@ -15,7 +15,6 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final progress = ref.watch(progressProvider);
     final questionsAsync = ref.watch(questionsProvider);
-    // final currentUser = ref.watch(currentUserNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -63,25 +62,6 @@ class HomePage extends ConsumerWidget {
             },
             tooltip: 'Clear Progress',
           ),
-          /* currentUser == null
-              ? const SizedBox.shrink()
-              : IconButton(
-                  icon: const Icon(Icons.person),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUpPage(
-                          isAnonymousConversion:
-                              currentUser.userDetails?.isAnonymous ?? false,
-                        ),
-                      ),
-                    );
-                  },
-                  tooltip: currentUser.userDetails?.isAnonymous ?? false
-                      ? 'Upgrade Account'
-                      : 'Profile',
-                ), */
         ],
       ),
       body: questionsAsync.when(

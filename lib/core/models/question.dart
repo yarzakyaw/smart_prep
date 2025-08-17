@@ -83,23 +83,6 @@ class Question {
       place: map['place'] ?? '',
     );
   }
-  /* factory Question.fromMap(Map<String, dynamic> map) {
-    return Question(
-      id: map['id'],
-      type: QuestionType.values.firstWhere(
-        (e) => e.toString().split('.').last == map['type'],
-      ),
-      text: map['text'],
-      options: map['options'] != null
-          ? List<String>.from(jsonDecode(map['options']))
-          : null,
-      correctAnswer: map['correct_answer'],
-      explanation: map['explanation'],
-      category: map['category'],
-      year: map['year'],
-      place: map['place'],
-    );
-  } */
 
   // Convert Question to map for SQLite
   Map<String, dynamic> toMap() {

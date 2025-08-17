@@ -31,14 +31,6 @@ class ProFeatureGateWidget extends ConsumerWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                /* Navigator.pushNamed(
-                  context,
-                  '/register',
-                  arguments: {
-                    'isAnonymousConversion':
-                        currentUser?.userDetails?.isAnonymous ?? false,
-                  },
-                ); */
                 Get.toNamed(
                   '/signup',
                   arguments: {
@@ -56,7 +48,6 @@ class ProFeatureGateWidget extends ConsumerWidget {
                 currentUser.userDetails?.isAnonymous == true)
               TextButton(
                 onPressed: () {
-                  // Navigator.pushNamed(context, 'signin');
                   Get.toNamed('/signin');
                 },
                 child: const Text(

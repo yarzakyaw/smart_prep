@@ -44,13 +44,6 @@ class MarketRemoteRepository {
     );
   }
 
-  /* Future<void> createQuestionSetForMarket(MarketQuestionSetModel set) async {
-    await _firestore
-        .collection('question_set_market')
-        .doc(set.id)
-        .set(set.toMap());
-  } */
-
   Future<void> purchaseQuestionSetFromMarket(
     String questionSetId,
     double points,

@@ -145,11 +145,6 @@ class ClassesPage extends ConsumerWidget {
                               '${translate(context, 'subject')}: ${classItem.subject}\n${translate(context, 'teacher')}: ${classItem.teacherName}',
                             ),
                             onTap: () {
-                              /* Navigator.pushNamed(
-                                context,
-                                '/class_details',
-                                arguments: {'class': classItem},
-                              ); */
                               Get.toNamed(
                                 '/classes/class_details',
                                 arguments: {'class': classItem},
@@ -198,66 +193,3 @@ class ClassesPage extends ConsumerWidget {
     );
   }
 }
-
-/* class ClassesPage extends ConsumerWidget {
-  const ClassesPage({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentUser = ref.watch(currentUserNotifierProvider);
-    if (currentUser == null || currentUser.userDetails == null) {
-      return Scaffold(
-        appBar: AppBar(title: Text(translate(context, 'classes_title'))),
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
-    final onlineUserInfo = ref.watch(
-      getUserInfoOnlineProvider(currentUser.userDetails!.uid),
-    );
-
-    return onlineUserInfo.when(
-      data: (user) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Classes', style: TextStyle(fontFamily: tFont)),
-            actions: [
-              const SizedBox(height: 16),
-              if (user.accountType == 'teacher')
-                ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Teacher features coming soon!',
-                          style: TextStyle(fontFamily: tFont),
-                        ),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Manage Classes',
-                    style: TextStyle(fontFamily: tFont),
-                  ),
-                ),
-            ],
-          ),
-          body: ProFeatureGateWidget(
-            featureName: 'classes',
-            child: const Center(
-              child: Text(
-                'Class participation feature coming soon!',
-                style: TextStyle(fontFamily: tFont, fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        );
-      },
-      error: (error, st) {
-        return Center(child: Text(error.toString()));
-      },
-      loading: () => const CustomLoader(),
-    );
-  }
-} */

@@ -29,17 +29,12 @@ class MCQWidget extends ConsumerWidget {
                 question.text,
                 style: const TextStyle(fontSize: 18, fontFamily: tFont),
               ),
-        /* Text(
-          question.text,
-          style: const TextStyle(fontSize: 18, fontFamily: tFont),
-        ), */
         const SizedBox(height: 16),
         ...question.options!.map(
           (option) => RadioListTile<String>(
             title: question.subject == 'Mathematics'
                 ? Math.tex(option, textStyle: const TextStyle(fontSize: 16))
                 : Text(option, style: const TextStyle(fontFamily: tFont)),
-            // title: Text(option, style: const TextStyle(fontFamily: tFont)),
             value: option,
             groupValue: selectedAnswer,
             onChanged: (value) {

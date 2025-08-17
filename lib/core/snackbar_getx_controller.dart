@@ -10,9 +10,6 @@ class SnackbarGetxController extends GetxController {
     required String title,
     required String message,
   }) {
-    /* final isDark =
-        WidgetsBinding.instance.platformDispatcher.platformBrightness ==
-        Brightness.dark; */
     Get.snackbar(
       title,
       message,
@@ -30,26 +27,26 @@ class SnackbarGetxController extends GetxController {
     );
   }
 
-  // static warningSnackBar({
-  //   required title,
-  //   message,
-  // }) {
-  //   Get.snackbar(
-  //     title,
-  //     message,
-  //     isDismissible: true,
-  //     shouldIconPulse: true,
-  //     colorText: mingalarWhiteColor,
-  //     backgroundColor: mingalarOnBoardingPage3Color,
-  //     snackPosition: SnackPosition.BOTTOM,
-  //     duration: const Duration(seconds: 6),
-  //     margin: const EdgeInsets.all(10),
-  //     icon: const Icon(
-  //       LineAwesomeIcons.exclamation_circle_solid,
-  //       color: mingalarWhiteColor,
-  //     ),
-  //   );
-  // }
+  static void warningSnackBar({
+    required String title,
+    required String message,
+  }) {
+    Get.snackbar(
+      title,
+      message,
+      isDismissible: true,
+      shouldIconPulse: true,
+      colorText: AppPallete.whiteColor,
+      backgroundColor: AppPallete.gradient4,
+      snackPosition: SnackPosition.BOTTOM,
+      duration: const Duration(seconds: 6),
+      margin: const EdgeInsets.all(10),
+      icon: const Icon(
+        LineAwesomeIcons.exclamation_circle_solid,
+        color: AppPallete.whiteColor,
+      ),
+    );
+  }
 
   static void errorSnackBar({required String title, required String message}) {
     Get.snackbar(
@@ -68,17 +65,4 @@ class SnackbarGetxController extends GetxController {
       ),
     );
   }
-
-  // static modernSnackBar({required title, message}) {
-  //   Get.snackbar(
-  //     title,
-  //     message,
-  //     isDismissible: true,
-  //     colorText: tWhiteColor,
-  //     backgroundColor: Colors.blueGrey,
-  //     snackPosition: SnackPosition.BOTTOM,
-  //     duration: const Duration(seconds: 5),
-  //     margin: const EdgeInsets.all(tDefaultSpace - 10),
-  //   );
-  // }
 }

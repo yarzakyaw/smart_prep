@@ -37,10 +37,6 @@ class _DashboardState extends State<Dashboard> {
       bottomNavigationBar: ConvexAppBar(
         backgroundColor: isDark ? AppPallete.gradient3 : AppPallete.greenColor,
         items: [
-          // TabItem(icon: Icons.home, title: translate(context, 'home')),
-          // TabItem(icon: Icons.camera_alt, title: translate(context, 'capture')),
-          // TabItem(icon: Icons.list, title: translate(context, 'observations')),
-          // TabItem(icon: Icons.person, title: translate(context, 'profile')),
           TabItem(
             icon: LineAwesomeIcons.home_solid,
             title: translate(context, 'home'),

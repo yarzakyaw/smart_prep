@@ -7,17 +7,22 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:smart_prep/core/models/submission_model.dart';
+import 'package:smart_prep/core/models/test_model.dart';
 import 'package:smart_prep/core/theme/app_theme.dart';
 import 'package:smart_prep/features/auth/model/user_info_model.dart';
 import 'package:smart_prep/features/auth/view/pages/sign_in_page.dart';
 import 'package:smart_prep/features/auth/view/pages/sign_up_page.dart';
 import 'package:smart_prep/features/auth/viewmodel/auth_view_model.dart';
 import 'package:smart_prep/features/classes/view/pages/classes_page.dart';
+import 'package:smart_prep/features/classes/view/pages/submissions_page.dart';
+import 'package:smart_prep/features/classes/view/pages/submit_test_page.dart';
 import 'package:smart_prep/features/classes/view/widget/class_details_widget.dart';
 import 'package:smart_prep/features/dashboard/view/pages/dashboard.dart';
 import 'package:smart_prep/features/home/view/pages/home_page.dart';
 import 'package:smart_prep/features/localization/app_localizations.dart';
 import 'package:smart_prep/features/market/view/pages/market_page.dart';
+import 'package:smart_prep/features/onboarding/view/pages/onboarding_page.dart';
 import 'package:smart_prep/features/practice/view/pages/practice_page.dart';
 import 'package:smart_prep/features/practice/view/widgets/practice_page_widget.dart';
 import 'package:smart_prep/features/practice/view/widgets/review_page_widget.dart';
@@ -57,20 +62,15 @@ void main() async {
   final appDocumentDir = await getApplicationDocumentsDirectory();
   await Hive.initFlutter(appDocumentDir.path);
   Hive.registerAdapter(UserInfoModelAdapter());
+  Hive.registerAdapter(SubmissionModelAdapter());
+  Hive.registerAdapter(TestModelAdapter());
 
   await Hive.openBox<UserInfoModel>('user_info');
+  await Hive.openBox<SubmissionModelAdapter>('submissions');
+  await Hive.openBox<TestModelAdapter>('tests');
+  await Hive.openBox('settings');
 
-  // final container = ProviderContainer();
-  // await container.read(authViewModelProvider.notifier).setInitialScreen()
-
-  /* runApp(
-    UncontrolledProviderScope(
-      container: container,
-      child: const SmartPrepApp(),
-    ),
-  ); */
-
-  runApp(const ProviderScope(child: SmartPrepApp()));
+  runApp(ProviderScope(child: SmartPrepApp()));
 }
 
 class SmartPrepApp extends ConsumerStatefulWidget {
@@ -89,36 +89,6 @@ class _SmartPrepAppState extends ConsumerState<SmartPrepApp> {
       await ref.read(authViewModelProvider.notifier).setInitialScreen();
     });
   }
-  /* @override
-  void initState() {
-    super.initState();
-    Future.microtask(() async {
-      final authService = ref.read(authServiceProvider);
-      final user = FirebaseAuth.instance.currentUser;
-      debugPrint('--------: user: $user');
-      if (user == null) {
-        await authService.signInAnonymously();
-      } else {
-        debugPrint(
-          'User already signed in: ${user.uid}, isAnonymous: ${user.isAnonymous}',
-        );
-      }
-    });
-    /* Future.microtask(() async {
-      await ref.read(authServiceProvider).signInAnonymously();
-    }); */
-  }
- */
-  /* Future<void> _signInAnonymously() async {
-    try {
-      await FirebaseAuth.instance.signInAnonymously();
-      debugPrint(
-        'Signed in anonymously: ${FirebaseAuth.instance.currentUser?.uid}',
-      );
-    } catch (e) {
-      debugPrint('Error signing in anonymously: $e');
-    }
-  } */
 
   @override
   Widget build(BuildContext context) {
@@ -138,10 +108,10 @@ class _SmartPrepAppState extends ConsumerState<SmartPrepApp> {
       theme: AppTheme.lightThemeMode,
       darkTheme: AppTheme.darkThemeMode,
       themeMode: ThemeMode.system,
-      // onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const SplashScreen()),
+        GetPage(name: '/onboarding', page: () => const OnboardingPage()),
         GetPage(name: '/dashboard', page: () => const Dashboard()),
         GetPage(name: '/dashboard/home', page: () => const HomePage()),
         GetPage(name: '/dashboard/practice', page: () => PracticePage()),
@@ -155,17 +125,6 @@ class _SmartPrepAppState extends ConsumerState<SmartPrepApp> {
             );
           },
         ),
-        /* GetPage(
-          name: '/dashboard/practice/quiz',
-          page: () {
-            final args = Get.arguments as Map<String, dynamic>?;
-            return PracticeQuizWidget(
-              questions: args?['questions'] ?? [],
-              mode: args?['mode'] ?? 'mixed',
-              subject: args?['subject'],
-            );
-          },
-        ), */
         GetPage(
           name: '/dashboard/practice/review',
           page: () {
@@ -193,6 +152,14 @@ class _SmartPrepAppState extends ConsumerState<SmartPrepApp> {
           },
         ),
         GetPage(name: '/marketplace', page: () => const MarketPage()),
+        GetPage(
+          name: '/submit_test',
+          page: () {
+            final args = Get.arguments as Map<String, dynamic>?;
+            return SubmitTestPage(test: args?['test']);
+          },
+        ),
+        GetPage(name: '/submissions', page: () => const SubmissionsPage()),
       ],
       localizationsDelegates: [
         AppLocalizations.delegate,

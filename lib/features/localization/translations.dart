@@ -1,24 +1,6 @@
 class AppTranslations {
   static const Map<String, Map<String, String>> translations = {
     'en': {
-      /// Firebase Exceptions
-      // "app_failure": "Sorry, an unexpected error occurred.",
-      // "email_in_use": "Email already exists.",
-      // "email_invalid": "Email is invalid or badly formatted.",
-      // "invalid_argument":
-      //     "An invalid argument was provided to the authentication method.",
-      // "invalid_password": "Incorrect password. Please try again.",
-      // "invalid_phone": "The provided phone number is invalid.",
-      // "not_allowed":
-      //     "The selected sign-in provider is disabled for your Firebase project.",
-      // "session_expired": "Your session has expired. Please sign in again.",
-      // "too_many_requests": "Too many requests. Service temporarily blocked.",
-      // "uid_in_use": "The provided UID is already in use by an existing user.",
-      // "user_disabled":
-      //     "This user has been disabled. Please contact support for assistance.",
-      // "user_not_found": "User not found. Please create an account.",
-      // "weak_password": "Please enter a stronger password.",
-      // "wrong_password": "Incorrect password. Please try again.",
       'failure': 'Failure',
       'no': 'No',
       'password_missing': 'Password is missing',
@@ -192,42 +174,8 @@ class AppTranslations {
       'view_class': 'View Class Content',
       'error_redirecting_teacher_dashboard':
           'Error redirecting to teacher dashboard.',
-
-      // 'your_profile': 'Your Profile',
-      // 'farm_location': 'Farm Location',
-      // 'save': 'Save',
-      //
-      //
-      //
-      //
-      // 'update_success': 'Profile updated successfully',
-      // 'update_error': 'Error updating profile',
-      // 'logout_error': 'Error logging out',
     },
     'my': {
-      /// Firebase Exceptions
-      // "app_failure":
-      //     "တောင်းပန်ပါသည်၊ မျှော်လင့်မထားသောအမှားတစ်ခု ဖြစ်ပွားခဲ့ပါသည်။",
-      // "email_in_use": "အီးမေးလ်းကို အသုံးပြုပြီးသားဖြစ်ပါသည်။",
-      // "email_invalid": "အီးမေးလ်သည် မမှန်ကန်ပါ၊ သို့မဟုတ် ပုံစံမှားနေပါသည်။",
-      // "invalid_argument":
-      //     "အထောက်အထားပြရာတွင် ပေးသည့်အကြောင်းပြချက် မှားနေပါသည်။",
-      // "invalid_password": "စကားဝှက် မှားနေပါသည်။ ထပ်မံကြိုးစားကြည့်ပါ။",
-      // "invalid_phone": "ပေးသည့် ဖုန်းနံပါတ်သည် မမှန်ကန်ပါ။",
-      // "not_allowed":
-      //     "ရွေးချယ်ထားသော ဝင်ရောက်မှုနည်းလမ်းအား သင်၏ Firebase project တွင် အသုံးပြုခွင့်မပေးထားပါ။",
-      // "session_expired":
-      //     "သင်၏ session သက်တမ်းကုန်သွားပါပြီ။ ကျေးဇူးပြု၍ ပြန်လည် ဝင်ရောက်ပါ။",
-      // "too_many_requests":
-      //     "တောင်းဆိုမှု များလွန်းပါသည်။ ဝန်ဆောင်မှုကို ယာယီပိတ်ထားပါသည်။",
-      // "uid_in_use":
-      //     "သင်ပေးသည့် UID အား လက်ရှိအသုံးပြုသူတစ်ဦးက သုံစွဲပြီးဖြစ်သည်။",
-      // "user_disabled":
-      //     "ဤအသုံးပြုသူကို ပိတ်ထားပါသည်။ အကူအညီအတွက် support ကို ဆက်သွယ်ပါ။",
-      // "user_not_found":
-      //     "အသုံးပြုသူကို မတွေ့ပါ။ ကျေးဇူးပြု၍ အကောင့်အသစ် ဖန်တီးပါ။",
-      // "weak_password": "ပိုမိုခိုင်မာသော စကားဝှက်ကို ထည့်ပါ။",
-      // "wrong_password": "စကားဝှက် မှားနေပါသည်။ ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ။",
       'failure': 'ရပ်ဆိုင်း',
       'no': 'ငြင်းဆို',
       'password_missing': 'ပတ်စ်ဝက် ထည့်ရန်ကျန်',
@@ -403,17 +351,6 @@ class AppTranslations {
       'view_class': 'ပါဝင်သည့်အရာများအား ကြည့်ရန်',
       'error_redirecting_teacher_dashboard':
           'ဆရာ Dashboard သို့ ချိတ်ဆက်ရာတွင် Error ရှိနေပါသည်',
-
-      // 'your_profile': 'သင်၏ပရိုဖိုင်',
-      // 'farm_location': 'လယ်ယာတည်နေရာ',
-      // 'save': 'သိမ်းဆည်းရန်',
-      //
-      //
-      //
-      //
-      // 'update_success': 'ပရိုဖိုင်အောင်မြင်စွာ အပ်ဒိတ်လုပ်ပြီးပါပြီ',
-      // 'update_error': 'ပရိုဖိုင်အပ်ဒိတ်လုပ်ရာတွင် အမှားဖြစ်ပေါ်ခဲ့သည်',
-      //
     },
   };
 

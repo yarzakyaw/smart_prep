@@ -45,15 +45,6 @@ class PracticePageWidget extends ConsumerWidget {
             subject: subject,
           );
         },
-        /* data: (questions) {
-          // Filter questions based on mode
-          final filteredQuestions = mode == 'mixed'
-              ? questions
-              : questions
-                    .where((q) => q.type.toString().split('.').last == mode)
-                    .toList();
-          return PracticeQuizWidget(questions: filteredQuestions, mode: mode);
-        }, */
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(child: Text('Error: $error')),
       ),

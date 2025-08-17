@@ -59,10 +59,8 @@ class AuthRemoteRepository {
     try {
       await _auth.currentUser!.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
-      // Left(AppFailure(FirebaseExceptions.fromCode(e.code).message));
       throw AppFailure(FirebaseExceptions.fromCode(e.code).message);
     } catch (e) {
-      // Left(AppFailure(const FirebaseExceptions().message));
       throw AppFailure('Unexpected error: $e');
     }
   }
@@ -218,8 +216,6 @@ class AuthRemoteRepository {
   // [LogoutUser] - Valid for any authentication.
   Future<void> signingOut() async {
     try {
-      // await GoogleSignIn.instance.signOut();
-      //await FacebookAuth.instance.logOut();
       _auth.signOut();
     } on FirebaseAuthException catch (e, stackTrace) {
       FirebaseCrashlytics.instance.recordError(
@@ -227,7 +223,6 @@ class AuthRemoteRepository {
         stackTrace,
         reason: 'Sign-out failed',
       );
-      // throw Left(AppFailure(FirebaseExceptions.fromCode(e.code).message));
       throw AppFailure(FirebaseExceptions.fromCode(e.code).message);
     } catch (e, stackTrace) {
       FirebaseCrashlytics.instance.recordError(
@@ -235,7 +230,6 @@ class AuthRemoteRepository {
         stackTrace,
         reason: 'Unexpected sign-out error',
       );
-      // throw Left(AppFailure(const FirebaseExceptions().message));
       throw AppFailure(const FirebaseExceptions().message);
     }
   }

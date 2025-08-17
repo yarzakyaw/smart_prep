@@ -54,23 +54,6 @@ class QuizNotifier extends StateNotifier<QuizState> {
         question.correctAnswer.trim().toLowerCase();
   }
 
-  /* void submitAnswer(Question question, String userAnswer) {
-    final isCorrect =
-        userAnswer.trim().toLowerCase() ==
-        question.correctAnswer.trim().toLowerCase();
-    state = state.copyWith(
-      userAnswers: {...state.userAnswers, question.id: userAnswer},
-      score: isCorrect ? state.score + 1 : state.score,
-    );
-
-    // Update providers
-    ref.read(userAnswersProvider.notifier).state = state.userAnswers;
-    ref.read(scoreProvider.notifier).state = state.score;
-
-    // Move to next question
-    ref.read(currentQuestionIndexProvider.notifier).state++;
-  } */
-
   // Reset quiz
   void resetQuiz() {
     state = QuizState();

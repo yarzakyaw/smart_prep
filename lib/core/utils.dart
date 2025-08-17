@@ -8,20 +8,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:smart_prep/features/localization/app_localizations.dart';
 import 'package:uuid/uuid.dart';
 
-/* void showSnackBar(BuildContext context, String content) {
-  ScaffoldMessenger.of(context)
-    ..hideCurrentSnackBar()
-    ..showSnackBar(
-      SnackBar(
-        content: Text(content),
-        backgroundColor: AppPallete.gradient1,
-        duration: Duration(seconds: 2),
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.only(top: 0, left: 16, right: 16),
-      ),
-    );
-} */
-
 String? validatePassword(BuildContext context, dynamic value) {
   if (value == null || value.isEmpty) {
     return 'Password is required';
@@ -61,37 +47,8 @@ Future<bool> isOffline() async {
   final List<ConnectivityResult> connectivityResult = await Connectivity()
       .checkConnectivity();
   return connectivityResult.contains(ConnectivityResult.none);
-  // return false; // Assuming always online for now
 }
 
 String translate(BuildContext context, String key) {
   return AppLocalizations.of(context).translate(key);
 }
-
-/* Future<bool> showConfirmationDialog(
-  BuildContext context,
-  String message,
-) async {
-  return await showDialog<bool>(
-        context: context,
-        builder:
-            (context) => AlertDialog(
-              title: Text('Confirm Action'),
-              content: Text(message),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: Text(
-                    'Proceed',
-                    style: TextStyle(color: AppPallete.greyColor),
-                  ),
-                ),
-              ],
-            ),
-      ) ??
-      false;
-} */

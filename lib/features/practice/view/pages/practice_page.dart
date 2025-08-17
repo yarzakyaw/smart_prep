@@ -17,11 +17,7 @@ class _PracticePageState extends ConsumerState<PracticePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Myanmar Grade 12 Exam Practice')),
-      /* body: questionsAsync.when(
-        data: (questions) => QuizWidget(questions: questions),
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(child: Text('Error: $error')),
-      ), */
+
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -64,15 +60,6 @@ class _PracticePageState extends ConsumerState<PracticePage> {
               ElevatedButton(
                 onPressed: selectedSubject != null
                     ? () {
-                        /* Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PracticePageWidget(
-                              mode: 'mcq',
-                              subject: selectedSubject,
-                            ),
-                          ),
-                        ); */
                         Get.toNamed(
                           '/dashboard/practice/main',
                           arguments: {
@@ -84,31 +71,10 @@ class _PracticePageState extends ConsumerState<PracticePage> {
                     : null,
                 child: const Text('Practice MCQs'),
               ),
-              /* ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const PracticePageWidget(mode: 'mcq'),
-                    ),
-                  );
-                },
-                child: const Text('Practice MCQs'),
-              ), */
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: selectedSubject != null
                     ? () {
-                        /* Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PracticePageWidget(
-                              mode: 'fillInTheBlank',
-                              subject: selectedSubject,
-                            ),
-                          ),
-                        ); */
                         Get.toNamed(
                           '/dashboard/practice/main',
                           arguments: {
@@ -120,31 +86,11 @@ class _PracticePageState extends ConsumerState<PracticePage> {
                     : null,
                 child: const Text('Practice Fill-in-the-blank'),
               ),
-              /* ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const PracticePageWidget(mode: 'fillInTheBlank'),
-                    ),
-                  );
-                },
-                child: const Text('Practice Fill-in-the-blank'),
-              ), */
+
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: selectedSubject != null
                     ? () {
-                        /* Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PracticePageWidget(
-                              mode: 'shortAnswer',
-                              subject: selectedSubject,
-                            ),
-                          ),
-                        ); */
                         Get.toNamed(
                           '/dashboard/practice/main',
                           arguments: {
@@ -156,31 +102,11 @@ class _PracticePageState extends ConsumerState<PracticePage> {
                     : null,
                 child: const Text('Practice Short Answer'),
               ),
-              /* ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const PracticePageWidget(mode: 'shortAnswer'),
-                    ),
-                  );
-                },
-                child: const Text('Practice Short Answer'),
-              ), */
+
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: selectedSubject != null
                     ? () {
-                        /* Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PracticePageWidget(
-                              mode: 'sentenceRewriting',
-                              subject: selectedSubject,
-                            ),
-                          ),
-                        ); */
                         Get.toNamed(
                           '/dashboard/practice/main',
                           arguments: {
@@ -192,31 +118,11 @@ class _PracticePageState extends ConsumerState<PracticePage> {
                     : null,
                 child: const Text('Practice Sentence Rewriting'),
               ),
-              /* ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const PracticePageWidget(mode: 'sentenceRewriting'),
-                    ),
-                  );
-                },
-                child: const Text('Practice Sentence Rewriting'),
-              ), */
+
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: selectedSubject != null
                     ? () {
-                        /* Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PracticePageWidget(
-                              mode: 'dialogueCompletion',
-                              subject: selectedSubject,
-                            ),
-                          ),
-                        ); */
                         Get.toNamed(
                           '/dashboard/practice/main',
                           arguments: {
@@ -228,31 +134,11 @@ class _PracticePageState extends ConsumerState<PracticePage> {
                     : null,
                 child: const Text('Practice Dialogue Completion'),
               ),
-              /* ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const PracticePageWidget(mode: 'dialogueCompletion'),
-                    ),
-                  );
-                },
-                child: const Text('Practice Dialogue Completion'),
-              ), */
+
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: selectedSubject != null
                     ? () {
-                        /* Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PracticePageWidget(
-                              mode: 'essay',
-                              subject: selectedSubject,
-                            ),
-                          ),
-                        ); */
                         Get.toNamed(
                           '/dashboard/practice/main',
                           arguments: {
@@ -264,31 +150,11 @@ class _PracticePageState extends ConsumerState<PracticePage> {
                     : null,
                 child: const Text('Practice Essay Writing'),
               ),
-              /* ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const PracticePageWidget(mode: 'essay'),
-                    ),
-                  );
-                },
-                child: const Text('Practice Essay'),
-              ), */
+
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: selectedSubject != null
                     ? () {
-                        /* Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PracticePageWidget(
-                              mode: 'mixed',
-                              subject: selectedSubject,
-                            ),
-                          ),
-                        ); */
                         Get.toNamed(
                           '/dashboard/practice/main',
                           arguments: {
@@ -300,18 +166,6 @@ class _PracticePageState extends ConsumerState<PracticePage> {
                     : null,
                 child: const Text('Practice Mixed Questions'),
               ),
-              /* ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const PracticePageWidget(mode: 'mixed'),
-                    ),
-                  );
-                },
-                child: const Text('Practice Mixed Questions'),
-              ), */
             ],
           ),
         ),

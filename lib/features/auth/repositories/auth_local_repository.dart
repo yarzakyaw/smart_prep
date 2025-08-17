@@ -74,41 +74,4 @@ class AuthLocalRepository {
     await storage.deleteAll(); // FlutterSecureStorage
     await userBox.clear(); // Hive box
   }
-
-  /* Future<Either<AppFailure, UserModel>> offlineSignInWithEmailAndPassword({
-    required BuildContext context,
-    required String name,
-    required String email,
-    required String password,
-  }) async {
-    final String? securedName = await getName();
-    final String? securedPassword = await getPassWord();
-    final String? securedEmail = await getEmail();
-
-    UserModel currentUser;
-
-    try {
-      if (securedName == name &&
-          securedPassword == password &&
-          securedEmail == email) {
-        currentUser = UserModel(username: name);
-        return Right(currentUser);
-      }
-      return Left(
-        AppFailure(
-          FirebaseExceptions(translate(context, 'app_failure')).message,
-        ),
-      );
-    } on FirebaseAuthException catch (e) {
-      return Left(
-        AppFailure(FirebaseExceptions.fromCode(context, e.code).message),
-      );
-    } catch (_) {
-      return Left(
-        AppFailure(
-          FirebaseExceptions(translate(context, 'app_failure')).message,
-        ),
-      );
-    }
-  } */
 }

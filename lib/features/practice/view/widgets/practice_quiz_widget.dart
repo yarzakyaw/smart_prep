@@ -33,9 +33,6 @@ class PracticeQuizWidget extends ConsumerWidget {
     final currentIndex = ref.watch(currentQuestionIndexProvider);
     final score = ref.watch(scoreProvider);
     final userAnswers = ref.watch(userAnswersProvider);
-    /* final mode = (ModalRoute.of(context)?.settings.name ?? 'mixed')
-        .split('/')
-        .last; */
 
     if (currentIndex >= questions.length) {
       return Center(
@@ -60,13 +57,6 @@ class PracticeQuizWidget extends ConsumerWidget {
                       questions,
                       subject: subject,
                     );
-                /* Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        ReviewPageWidget(questions: questions),
-                  ),
-                ); */
                 Get.toNamed(
                   '/dashboard/practice/review',
                   arguments: {'questions': questions},
@@ -99,7 +89,6 @@ class PracticeQuizWidget extends ConsumerWidget {
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
-          // Expanded(child: _buildQuestionWidget(context, ref, question)),
           Expanded(
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
@@ -166,67 +155,4 @@ class PracticeQuizWidget extends ConsumerWidget {
         );
     }
   }
-
-  /* Widget _buildQuestionWidget(
-    BuildContext context,
-    WidgetRef ref,
-    Question question,
-  ) {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300),
-      child: Container(
-        key: ValueKey(question.id), // Unique key for animation
-        child: switch (question.type) {
-          QuestionType.mcq => MCQWidget(
-            question: question,
-            onAnswerSelected: (answer) {
-              ref.read(quizProvider.notifier).submitAnswer(question, answer);
-            },
-          ),
-          QuestionType.fillInTheBlank => FillInTheBlankWidget(
-            question: question,
-            onAnswerSubmitted: (answer) {
-              ref.read(quizProvider.notifier).submitAnswer(question, answer);
-            },
-          ),
-          QuestionType.shortAnswer => ShortAnswerWidget(
-            question: question,
-            onAnswerSubmitted: (answer) {
-              ref.read(quizProvider.notifier).submitAnswer(question, answer);
-            },
-          ),
-        },
-      ),
-    );
-  } */
-
-  /* Widget _buildQuestionWidget(
-    BuildContext context,
-    WidgetRef ref,
-    Question question,
-  ) {
-    switch (question.type) {
-      case QuestionType.mcq:
-        return MCQWidget(
-          question: question,
-          onAnswerSelected: (answer) {
-            ref.read(quizProvider.notifier).submitAnswer(question, answer);
-          },
-        );
-      case QuestionType.fillInTheBlank:
-        return FillInTheBlankWidget(
-          question: question,
-          onAnswerSubmitted: (answer) {
-            ref.read(quizProvider.notifier).submitAnswer(question, answer);
-          },
-        );
-      case QuestionType.shortAnswer:
-        return ShortAnswerWidget(
-          question: question,
-          onAnswerSubmitted: (answer) {
-            ref.read(quizProvider.notifier).submitAnswer(question, answer);
-          },
-        );
-    }
-  } */
 }

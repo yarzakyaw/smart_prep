@@ -37,18 +37,6 @@ class AuthViewModel extends _$AuthViewModel {
   CurrentUserNotifier get _currentUserNotifier =>
       ref.read(currentUserNotifierProvider.notifier);
 
-  /* late AuthRemoteRepository _authRemoteRepository;
-  late CurrentUserNotifier _currentUserNotifier;
-  late AuthLocalRepository _authLocalRepository;
-
-  @override
-  AsyncValue<UserModel>? build() {
-    _authRemoteRepository = ref.watch(authRemoteRepositoryProvider);
-    _currentUserNotifier = ref.watch(currentUserNotifierProvider.notifier);
-    _authLocalRepository = ref.watch(authLocalRepositoryProvider);
-    return null;
-  } */
-
   /// Setting initial screen
   Future<void> setInitialScreen() async {
     if (await isOffline()) {
@@ -96,7 +84,6 @@ class AuthViewModel extends _$AuthViewModel {
         final isExist = await docRef.then((value) => value.exists);
         debugPrint('------------ user exists: ${isExist.toString()}');
         if (isExist || user.isAnonymous) {
-          // if (isExist) {
           debugPrint('----------- in the isExists or anonymous');
           _currentUserNotifier.addUser(userModel);
         } else {
@@ -143,7 +130,6 @@ class AuthViewModel extends _$AuthViewModel {
         l.message,
         StackTrace.current,
       ),
-      //Right(value: final r) => state = AsyncValue.data(r),
       Right(value: final r) => createUserWithEmail(r, name),
     };
     debugPrint(val.toString());
@@ -167,15 +153,6 @@ class AuthViewModel extends _$AuthViewModel {
       case Left(value: final l):
         state = AsyncValue.error(l.message, StackTrace.current);
     }
-
-    /* final val = switch (res) {
-      Left(value: final l) => state = AsyncValue.error(
-        l.message,
-        StackTrace.current,
-      ),
-      Right(value: final r) => state = AsyncValue.data(r),
-    };
-    debugPrint(val.toString()); */
   }
 
   Future<void> signinUser({
@@ -244,13 +221,6 @@ class AuthViewModel extends _$AuthViewModel {
       Right(value: final r) => createUserWithEmail(r, name),
     };
     debugPrint(val.toString());
-
-    /* switch (res) {
-      case Right(value: final r):
-        createUserWithEmail(r, name);
-      case Left(value: final l):
-        state = AsyncValue.error(l.message, StackTrace.current);
-    } */
   }
 
   AsyncValue<UserModel>? _loginSuccess(UserModel user) {
@@ -274,14 +244,6 @@ class AuthViewModel extends _$AuthViewModel {
       _currentUserNotifier.clear();
       await setInitialScreen();
       return true;
-      /* final res = await _authRemoteRepository.signInAnonymously();
-      switch (res) {
-        case Right(value: final user):
-          _currentUserNotifier.addUser(user);
-          return true;
-        case Left():
-          return false;
-      } */
     } catch (e) {
       debugPrint('Logout failed: $e');
       return false;

@@ -35,8 +35,6 @@ class _SignupControllerWidgetState
 
   @override
   Widget build(BuildContext context) {
-    // final isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-
     return SizedBox(
       child: Form(
         key: formKey,

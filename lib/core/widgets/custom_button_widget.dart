@@ -22,7 +22,6 @@ class CustomButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return SizedBox(
       width: isFullWidth ? double.infinity : width,
       child: ElevatedButton(
@@ -35,7 +34,6 @@ class CustomButtonWidget extends StatelessWidget {
         child: isLoading
             ? const CustomLoader()
             : Text(
-                //text.toUpperCase(),
                 text,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(

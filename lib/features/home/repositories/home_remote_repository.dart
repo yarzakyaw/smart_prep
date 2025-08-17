@@ -6,6 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:smart_prep/core/models/submission_model.dart';
+import 'package:smart_prep/core/models/test_model.dart';
 import 'package:smart_prep/features/classes/models/class_model.dart';
 import 'package:uuid/uuid.dart';
 
@@ -18,7 +20,9 @@ HomeRemoteRepository homeRemoteRepository(Ref ref) {
 
 class HomeRemoteRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
   final _auth = FirebaseAuth.instance;
+
   // Save progress to Firestore
   Future<void> saveProgress({
     required String mode,
@@ -54,7 +58,6 @@ class HomeRemoteRepository {
           .where('userId', isEqualTo: user.uid)
           .orderBy('timestamp', descending: true)
           .get();
-      // return query.docs.map((doc) => doc.data()).toList();
       return query.docs.map((doc) => {...doc.data(), 'id': doc.id}).toList();
     }
     return [];
@@ -105,6 +108,76 @@ class HomeRemoteRepository {
       });
       await docRef.update({'id': docRef.id});
     }
+  }
+
+  Stream<List<TestModel>> getTests(String classId) {
+    return _firestore
+        .collection('tests')
+        .where('classId', isEqualTo: classId)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map(
+          (snapshot) => snapshot.docs
+              .map((doc) => TestModel.fromMap(doc.data()))
+              .toList(),
+        );
+  }
+
+  Future<void> submitTest({
+    required String testId,
+    required String studentId,
+    required String classId,
+    required String studentName,
+    required String questionType,
+    String? pdfPath,
+    List<Map<String, dynamic>>? answers,
+  }) async {
+    final testDoc = await _firestore.collection('tests').doc(testId).get();
+    final test = TestModel.fromMap(testDoc.data()!);
+    if (test.dueDate != null && DateTime.now().isAfter(test.dueDate!)) {
+      throw Exception('Submission deadline has passed');
+    }
+
+    final submission = SubmissionModel(
+      id: const Uuid().v4(),
+      testId: testId,
+      classId: classId,
+      studentId: studentId,
+      studentName: studentName,
+      questionType: questionType,
+      answers: answers,
+      submittedAt: DateTime.now(),
+    );
+    await _firestore
+        .collection('submissions')
+        .doc(submission.id)
+        .set(submission.toMap());
+  }
+
+  Stream<List<SubmissionModel>> getUserSubmissions(String userId) {
+    return _firestore
+        .collection('submissions')
+        .where('studentId', isEqualTo: userId)
+        .orderBy('submittedAt', descending: true)
+        .snapshots()
+        .map(
+          (snapshot) => snapshot.docs
+              .map((doc) => SubmissionModel.fromMap(doc.data()))
+              .toList(),
+        );
+  }
+
+  Future<String> uploadSubmissionPdf(
+    String submissionId,
+    File file,
+    String studentId,
+  ) async {
+    final ref = _storage.ref().child('submission_pdfs/$submissionId.pdf');
+    await ref.putFile(
+      file,
+      SettableMetadata(customMetadata: {'studentId': studentId}),
+    );
+    return await ref.getDownloadURL();
   }
 
   Future<void> synceUserInfoOnline({
